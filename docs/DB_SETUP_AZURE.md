@@ -88,3 +88,54 @@ The project uses `pymongo` to connect to Azure Cosmos DB with the MongoDB API.
 
 ### Important Note for Cosmos DB (RU-based)
 If you are using the Request Unit (RU) based Cosmos DB, ensure you create the database (`django_store_reviews`) and collection (`reviews`) manually in the Data Explorer if `pymongo` does not automatically create them due to permissions or configuration consistency levels.
+
+---
+
+## 3. Querying Data (Azure Portal)
+
+You can view and query your SQL data directly from the Azure Portal using the **Query Editor**.
+
+### Accessing the Query Editor
+1. Navigate to your **SQL Database** resource in the Azure Portal.
+2. In the left-hand menu, under **Tools** (or sometimes directly at the top level), select **Query editor (preview)**.
+
+### Logging In
+1. You will be prompted to login.
+2. **Authorization Type**: Select **SQL server authentication**.
+3. **Login**: Enter the admin username you created (e.g., `bearlab-admin`).
+4. **Password**: Enter your admin password.
+5. Click **OK**.
+
+> **Note:** If you see a firewall error, your IP might not be whitelisted.
+> - If you are accessing it, you might need to add your current client IP to the firewall rules (see Section 1: Firewall Configuration).
+> - Alternatively, check "Allow Azure services and resources to access this server" if you are debugging from another Azure resource, though for the portal, your client IP usually needs to be added.
+
+### Sample Queries
+
+Once logged in, you can run standard T-SQL queries. Here are some examples based on this project's tables:
+
+**List all Stores:**
+```sql
+SELECT * FROM api_store;
+```
+
+**List all Products:**
+```sql
+SELECT * FROM api_product;
+```
+
+**List all Orders:**
+```sql
+SELECT * FROM api_order;
+```
+
+**Join Orders with Users:**
+```sql
+SELECT 
+    o.id as OrderID, 
+    u.username as Customer, 
+    o.status, 
+    o.created_at 
+FROM api_order o
+JOIN auth_user u ON o.user_id = u.id;
+```
