@@ -87,13 +87,28 @@ WSGI_APPLICATION = 'azure_project.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mssql',
+#         'NAME': 'bearlab-sql-db',
+#         'USER': 'bearlab-admin',
+#         'PASSWORD': 'P@ss1234',
+#         'HOST': 'bearlab-sql-server.database.windows.net',
+#         'PORT': '1433',
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 18 for SQL Server',
+#         },
+#     },
+# }
+
+# Server=tcp:pornpanit-sql-server.database.windows.net,1433;Initial Catalog=pornpanit-db;Persist Security Info=False;User ID=pornpanit;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;
 DATABASES = {
     'default': {
         'ENGINE': 'mssql',
-        'NAME': 'bearlab-sql-db',
-        'USER': 'bearlab-admin',
-        'PASSWORD': 'P@ss1234',
-        'HOST': 'bearlab-sql-server.database.windows.net',
+        'NAME': 'pornpanit-db',
+        'USER': 'pornpanit',
+        'PASSWORD': 'B_baitoey',
+        'HOST': 'pornpanit-sql-server.database.windows.net',
         'PORT': '1433',
         'OPTIONS': {
             'driver': 'ODBC Driver 18 for SQL Server',
