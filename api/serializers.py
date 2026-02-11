@@ -12,6 +12,11 @@ class StoreSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     # Serializer for Product model
+    price = serializers.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        coerce_to_string=False
+    )
     class Meta:
         model = Product
         fields = '__all__'
@@ -27,7 +32,13 @@ class UserSerializer(serializers.ModelSerializer):
 class OrderItemSerializer(serializers.ModelSerializer):
     # Serializer for OrderItem model
     product_name = serializers.ReadOnlyField(source='product.name')
-    product_price = serializers.ReadOnlyField(source='product.price')
+    product_price = serializers.DecimalField(
+        source='product.price',
+        max_digits=10,
+        decimal_places=2,
+        read_only=True,
+        coerce_to_string=False
+    )
 
     class Meta:
         model = OrderItem
